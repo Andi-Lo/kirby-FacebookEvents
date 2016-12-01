@@ -1,0 +1,27 @@
+{
+  "name": "kirby-facebook-events",
+  "version": "1.0.0",
+  "description": "Simply request event pages from Facebook via Graph API",
+  "main": "",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andi-Lo/kirby-FacebookEvents.git"
+  },
+  "keywords": [
+    "kirby",
+    "FacebookEvents",
+    "Kirby-FacebookEvents"
+  ],
+  "author": "Andreas Lorer",
+  "license": "SEE LICENSE IN readme.md",
+  "bugs": {
+    "url": "https://github.com/Andi-Lo/kirby-FacebookEvents/issues"
+  },
+  "homepage": "https://github.com/Andi-Lo/kirby-FacebookEvents#readme"
+}

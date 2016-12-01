@@ -1,0 +1,99 @@
+# Kirby FacebookEvents
+
+![Version](https://img.shields.io/badge/Version-1.0.0-green.svg)
+
+This plugin does one simple thing: Using the Facebook Graph API to get events from a facebook page.
+
+## Preview
+
+If you did everything allright you should be able to make an API call for any given Facebook Page ID. Your result could look like this: Using the handsome Starterkit
+
+![Preview](preview.jpg)
+
+
+## Installation
+
+Download or clone this project into the plugins folder of your project. Make sure to rename the folder to `FacebookEvents`. It should look like this:
+
+```php
+ site/plugins/FacebookEvents
+```
+
+## Getting started
+
+### Get a Facebook Access Token
+
+For the plugin to work you need access to the Facebook API. Unfortunately Facebook has removed unauthenticated access to the Graph API for Pages. You'll need to create an application at [Facebook](https://developers.facebook.com/) to obtain an Access Token.
+
+I think you could also create a temporary Token via the [Graph API Explorer](https://developers.facebook.com/tools/explorer) but this one will expire after 1 hour.
+
+You can obtain a longer living Access Token if you use this link with your AppId and AppSecret `https://graph.facebook.com/oauth/access_token?client_id=YOUR_APP_ID&client_secret=YOUR_APP_SECRET&grant_type=client_credentials`
+
+### Get a Facebook Page ID
+
+Next to display the events from some page you need it's page ID. You can obtain that ID using the [Graph API Explorer](https://developers.facebook.com/tools/explorer) and enter the pages name there. Like this:
+
+![graph_api](graph_api.jpg)
+
+### Enter your credentials for API calls
+
+In order to make API calls to Facebook you need to enter your credentials in the accessToken field located in: `site/plugins/FacebookEvents/credentials/credentials.json`
+
+## Usage
+
+Requesting the data is really simple: Example code (from example/event.php). The requested pictures of the event will get saved into your `$page` objects content folder. On further requests they then will get shared from your local storage.
+
+```php
+  // provide a $page object. The requested pictures will be stored in that page
+  $fbe = FacebookEvents($page);
+
+  // and enter the id of the related facebook page.
+  // You can obtain the events sorted by their starting date 'ascending' (default value) or 'descending'.
+  $events = $fbe->getFacebookEvents('1676014109285451', 'asc');
+```
+
+Now you can request a specific event or just loop through all of them. Your choice:
+
+```php
+
+// loop through all events:
+<?php for($i = 0; $i < count($events); $i++): ?>
+  <?php $fb_event = $fbe->getEvent($events, $i); ?>
+    <div>
+      <h3><?php echo $fb_event->name() ?></h3>
+      <p><?php echo kirbytext($fb_event->description()) ?></p>
+    </div>
+<?php endfor ?>
+```
+
+By default if no index is given you will obtain the next event with the nearest `start_date` until today.
+
+```php
+// or just fetch a single event
+<?php $fb_event = $fbe->getEvent($events); ?>
+<div>
+  <h3><?php echo $fb_event->name() ?></h3>
+  <p><?php echo kirbytext($fb_event->description()) ?></p>
+</div>
+
+```
+
+You can access specific events by their index. If you access an invalid index (e.g. because that event does not exist), an error will be thrown.
+
+```php
+// or just fetch a single event
+<?php $fb_event = $fbe->getEvent($events, 2); ?>
+
+```
+
+## Example files
+
+To get you a heat start there are is an example `event.php` snippet located in `site/plugins/FacebookEvents/example/snippets/`. You can copy that to your projects snippet folder and call it in e.g. `templates/home.php`.
+
+You can also find an example css styling file in there.
+
+## License
+
+![cc-by-sa](https://camo.githubusercontent.com/fad0133bba5d16e03dc3b72031d41fbc0a1a9ac1/68747470733a2f2f6c6963656e7365627574746f6e732e6e65742f6c2f62792d73612f332e302f38387833312e706e67)
+
+<https://creativecommons.org/licenses/by-sa/4.0/>
