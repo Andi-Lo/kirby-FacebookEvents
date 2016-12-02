@@ -121,9 +121,7 @@ You can pass the description over to Kirbytext, to get some nice formating:
 
 ## Example files
 
-To get you a heat start there are is an example `event.php` snippet located in `site/plugins/FacebookEvents/example/snippets/`. You can copy that to your projects snippet folder and call it in e.g. `templates/home.php`.
-['date', 'time', 'day', 'month', 'year', 'date_id']
-You can also find an example css styling file in there.
+To get you a heat start there are is an example `event.php` snippet located in `site/plugins/FacebookEvents/example/snippets/`. You can copy that to your projects snippet folder and call it in e.g. `templates/home.php`. You can also find an example css styling file in there.
 
 ## Future improvements
 
