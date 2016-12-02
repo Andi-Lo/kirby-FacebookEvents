@@ -16,6 +16,7 @@
     private $start_date_day = '';
     private $start_date_year = '';
     private $start_date_time = '';
+    private $start_date_raw = '';
     private $cover = '';
     private $end_date = '';
     private $event_url = '';
@@ -50,11 +51,11 @@
 
     public function start_date_time() { return $this->start_date_time; }
 
+    public function start_date_raw() { return $this->start_date_raw; }
+
     public function cover() { return $this->cover; }
 
     public function end_date() { return $this->end_date; }
-
-    public function local() { return $this->local; }
 
     public function __construct($page) {
       $this->page_obj = $page;
@@ -114,6 +115,7 @@
         $this->start_date_year = $start_date['year'];
         $this->start_date_humanized = $start_date['date'];
         $this->start_date_time = $start_date['time'];
+        $this->start_date_raw = $start_date['raw_date'];
         $this->start_date = $start_date;
       }
       if(isset($event['end_time'])) {
@@ -150,7 +152,7 @@
 
       // remove the ':00+0100' part from the time value '13:00:00+0100'
       $time = a::first(preg_split("/\:[0-9]{2}\+[0-9]{1,4}/", $time));
-      $date_id = $date . ' ' . $time . ':00';
+      $raw_date = $date . ' ' . $time . ':00';
 
       // set the date format to '2016-01-31' so the parser does recognizes it
       $format = date_create_from_format('Y-m-d', $date);
@@ -160,7 +162,7 @@
       $month = date_format($format, 'M');
       $year = date_format($format, 'Y');
 
-      return ['date' => $date, 'time' => $time, 'day' => $day, 'month' => $month, 'year' => $year, 'date_id' => $date_id];
+      return ['date' => $date, 'time' => $time, 'day' => $day, 'month' => $month, 'year' => $year, 'raw_date' => $raw_date];
     }
 
     public function generateThumbnail($imageUrl, $page) {
