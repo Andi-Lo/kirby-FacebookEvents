@@ -7,7 +7,7 @@
 }
 .news:before {
   position: absolute;
-  background: url("news-background.png") bottom left repeat-x;
+  background: url("../images/news-background.png") bottom left repeat-x;
   bottom: 0;
   content: '';
   display: block;
@@ -67,6 +67,16 @@
   position: relative;
   text-align: center;
   white-space: nowrap;
+}
+
+/* FacebookEvents */
+
+.event_dates, .event_location  {
+  display: inline-block;
+  width: 49%;
+}
+.event_location {
+  text-align: right;
 }
 
 @media (max-width: 500px) {

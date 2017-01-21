@@ -4,20 +4,61 @@
 
 This plugin does one simple thing: Using the Facebook Graph API to get events from a Facebook page.
 
+## Changelog
+
+* v1.0.0 - First release
+* v2.0.0 - Added asynchronous call functionality
+
 ## Preview
 
 If you did everything allright you should be able to make an API call for any given Facebook page ID. Your result could look like this: Using the handsome starterkit
 
 ![Preview](preview.jpg)
 
-
 ## Installation
 
 Download or clone this project into the plugins folder of your project. Make sure to rename the folder to `FacebookEvents`. It should look like this:
 
 ```php
- site/plugins/FacebookEvents
+  site/plugins/FacebookEvents
 ```
+
+## Setting things up
+
+1. Add entry to config.php
+
+First things first. You need to specify a snippet path in your config file. This snippet will act as a template and renders the content according to the markup.
+
+```php
+  // config.php
+  c::set("facebookEventsTemplate", "your/snippet/file")
+```
+
+Just take a look at the example files provided in the plugins example folder. See Section [Example files](#example-files)
+
+2. Include javascript for asynchronous call
+
+Next you need to include a little javascript file. You can place it in the header of your webpage if you have some sort of one-page layout. Otherwise you should include it on the page where the Facebook-Events should get displayed. This script will take care that the content gets loaded asynchronous via Ajax.
+
+```php
+  js('assets/plugins/FacebookEvents/js/facebookEvents.js', true)
+```
+
+(Optional) There is also a basic css file included. Feel free to use it or just style the content yourself. It's Up to you.
+
+```php
+  css('assets/plugins/FacebookEvents/css/news.css')
+```
+
+3. Provide a HTML element
+
+In step 1 you used the `config.php` file to set a snippet as template. This will get used to render the content and returns the html that you want to show on your webpage. But in order to do that it needs to get a place somewhere on your webpage. 
+
+```html
+  <span id="fb-news"></span>
+```
+
+Just put an HTML element with this ID on your webpage where you want the content to get rendered. This could be in your `home` template or anywhere else.
 
 ## Getting started
 
@@ -55,7 +96,6 @@ Requesting the data is really simple: Example code (from example/event.php). The
 Now you can request a specific event or just loop through all of them. Your choice:
 
 ```php
-
 // loop through all events:
 <?php for($i = 0; $i < count($events); $i++): ?>
   <?php $fb_event = $fbe->getEvent($events, $i); ?>
@@ -83,6 +123,8 @@ You can access specific events by their index. If you access an invalid index (e
 ```php
 // or just fetch a single event
 <?php $fb_event = $fbe->getEvent($events, 2); ?>
+// if you just need the first
+<?php $fb_event = $fbe->getEvent($events); ?>
 
 ```
 
@@ -121,11 +163,11 @@ You can pass the description over to Kirbytext, to get some nice formating:
 
 ## Example files
 
-To get you a heat start there are is an example `event.php` snippet located in `site/plugins/FacebookEvents/example/snippets/`. You can copy that to your projects snippet folder and call it in e.g. `templates/home.php`. You can also find an example css styling file in there.
+To get you a heat start there are is an example `event.php` snippet located in `site/plugins/FacebookEvents/example/snippets/`. You can copy that to your projects snippet folder and call it in e.g. `templates/home.php`. You can also find an example css styling file in `assets/css`
 
 ## Future improvements
 
-- [ ] Make call asynchronous
+- [x] Make call asynchronous (v2.0.0)
 
 ## License
 
