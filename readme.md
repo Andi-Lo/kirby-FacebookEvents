@@ -25,7 +25,7 @@ Download or clone this project into the plugins folder of your project. Make sur
 
 ## Setting things up
 
-1. Add entry to config.php
+#### 1. Add entry to config.php
 
 First things first. You need to specify a snippet path in your config file. This snippet will act as a template and renders the content according to the markup.
 
@@ -36,7 +36,7 @@ First things first. You need to specify a snippet path in your config file. This
 
 Just take a look at the example files provided in the plugins example folder. See Section [Example files](#example-files)
 
-2. Include javascript for asynchronous call
+#### 2. Include javascript for asynchronous call
 
 Next you need to include a little javascript file. You can place it in the header of your webpage if you have some sort of one-page layout. Otherwise you should include it on the page where the Facebook-Events should get displayed. This script will take care that the content gets loaded asynchronous via Ajax.
 
@@ -50,7 +50,7 @@ Next you need to include a little javascript file. You can place it in the heade
   css('assets/plugins/FacebookEvents/css/news.css')
 ```
 
-3. Provide a HTML element
+#### 3. Provide a HTML element
 
 In step 1 you used the `config.php` file to set a snippet as template. This will get used to render the content and returns the html that you want to show on your webpage. But in order to do that it needs to get a place somewhere on your webpage. 
 
