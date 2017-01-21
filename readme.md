@@ -1,6 +1,6 @@
 # Kirby FacebookEvents
 
-![Version](https://img.shields.io/badge/Version-1.0.0-green.svg)
+![Version](https://img.shields.io/badge/Version-2.0.0-green.svg)
 
 This plugin does one simple thing: Using the Facebook Graph API to get events from a Facebook page.
 
