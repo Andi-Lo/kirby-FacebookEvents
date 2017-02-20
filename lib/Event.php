@@ -61,15 +61,12 @@
       $this->page_obj = $page;
     }
 
-    //
     /*
-    * TODO: call fb API via ajax (asynchronous)
     * Fetches the event from Facebook API laying between "since" and "until"
     */
-    public function getFacebookEvents($facebookPageId, $sort = 'asc') {
+    public function getFacebookEvents($facebookPageId) {
       $fb_api = new FacebookApi();
       $events = $fb_api->requestEvents($facebookPageId);
-      $events = a::sort($events, 'start_time', $sort);
 
       return $events;
     }
@@ -77,20 +74,25 @@
     public function getEvent($events, $index = 0) {
       $countEvents = count($events);
 
-      if($countEvents > 0) {
-        $event = a::first($events);
-      } else {
+      if($countEvents < 0) {
         throw new Error('Error: The given $events -object does not contain any events');
-      }
-      if($countEvents > $index) {
-        $event = a::get($events, $index);
       } else {
-        throw new Error('Error: The given index does not match any of the events entries. Given Index: ' . $index);
-      }
-      $this->setEventProperties($event);
-      $this->setTimeProperties($event);
+        if($index === 0) {
+          $event = a::last($events);
+        }
+        else if($index === -1) {
+          $event = a::first($events);
+        }
+        else if($countEvents > $index && $index > 0) {
+          $event = a::get($events, $index);
+        } else {
+          throw new Error('Error: The given index does not match any of the events entries. Given Index: ' . $index);
+        }
+        $this->setEventProperties($event);
+        $this->setTimeProperties($event);
 
-      return $this;
+        return $this;
+      }
     }
 
     private function setEventProperties($event) {
