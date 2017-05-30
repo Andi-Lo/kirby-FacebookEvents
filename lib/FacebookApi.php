@@ -28,9 +28,10 @@
 
       $fields = "id,name,description,place,timezone,start_time,end_time,cover";
 
-      $json_link = "https://graph.facebook.com/v2.8/{$this->fb_page_id}/events/attending/?fields={$fields}&access_token={$access_token}&since={$since_unix_timestamp}&until={$until_unix_timestamp}";
+      $json_link = "https://graph.facebook.com/v2.8/{$this->fb_page_id}/events/attending/?fields={$fields}&access_token={$access_token}";
 
       $json = file_get_contents($json_link);
+
       $events = json_decode($json, true, 512, JSON_BIGINT_AS_STRING);
       $events = $events['data'];
 
