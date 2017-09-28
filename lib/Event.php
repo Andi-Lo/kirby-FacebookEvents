@@ -78,10 +78,10 @@
         throw new Error('Error: The given $events -object does not contain any events');
       } else {
         if($index === 0) {
-          $event = a::last($events);
+          $event = a::first($events);
         }
         else if($index === -1) {
-          $event = a::first($events);
+          $event = a::last($events);
         }
         else if($countEvents > $index && $index > 0) {
           $event = a::get($events, $index);
