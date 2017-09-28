@@ -1,6 +1,6 @@
 # Kirby FacebookEvents
 
-![Version](https://img.shields.io/badge/Version-2.0.0-green.svg)
+![Version](https://img.shields.io/badge/Version-v2.0.1-green.svg)
 
 This plugin does one simple thing: Using the Facebook Graph API to get events from a Facebook page.
 
@@ -8,6 +8,7 @@ This plugin does one simple thing: Using the Facebook Graph API to get events fr
 
 * v1.0.0 - First release
 * v2.0.0 - Added asynchronous call functionality
+* v2.0.1 - Implemented Facebooks API change for event sorting (newest to oldest instead of oldest to newest)
 
 ## Preview
 
