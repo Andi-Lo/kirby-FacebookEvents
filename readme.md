@@ -4,6 +4,13 @@
 
 This plugin does one simple thing: Using the Facebook Graph API to get events from a Facebook page.
 
+# Demo Project example
+
+
+There exists a demo project that you can use for a quick setup of the plugin or as a reference. This should help your get things up and running. Check it out, all you need is a Facebook API token.
+
+[Demo Project](https://github.com/Andi-Lo/FacebookEventsExample)
+
 ## Changelog
 
 * v1.0.0 - First release
