@@ -35,11 +35,24 @@ Download or clone this project into the plugins folder of your project. Make sur
 
 #### 1. Add entry to config.php
 
-First things first. You need to specify a snippet path in your config file. This snippet will act as a template and renders the content according to the markup.
+First things first. You need to specify a snippet path in your config file. This snippet will act as a template and renders the content according to the markup. Here the `sections/contentnews` is used.
 
 ```php
-  // config.php
-  c::set("facebookEventsTemplate", "your/snippet/file")
+c::set('routes', array(
+  array(
+      'pattern' => '(:all)/FacebookEvents.php',
+      'action'  => function($uri) {
+        // A kirby page object that should contain the events. The given page bascially
+        // acts as a data storage for the generated thumbnails.
+        $news = page('home'); 
+        $fbe = FacebookEvents($news);
+        $events = $fbe->getFacebookEvents('123456789'); // your facebook page ID
+        $fb_event = $fbe->getEvent($events, 0); // the '0' specifies to get the first event
+        snippet('sections/contentnews', array('event' => $fb_event, 'news' => $news)); // call your snippet for rendering.
+      },
+      'method' => 'POST'
+  )
+));
 ```
 
 Just take a look at the example files provided in the plugins example folder. See Section [Example files](#example-files)
