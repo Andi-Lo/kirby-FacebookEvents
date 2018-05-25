@@ -1,4 +1,6 @@
-# Kirby FacebookEvents
+Due to the new GDPR regulations the Facebook Graph API is no longer giving access to event pages which kills this plugin.
+
+# Kirby FacebookEvents (Deprecated*)
 
 ![Version](https://img.shields.io/badge/Version-v2.0.1-green.svg)
 
